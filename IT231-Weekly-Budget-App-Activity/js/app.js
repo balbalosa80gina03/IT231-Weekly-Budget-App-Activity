@@ -63,3 +63,14 @@ class HTML {
         }
     }
 }
+const addExpenseForm = document.querySelector('#add-expense'),
+    budgetTotal = document.querySelector('span#total'),
+    budgetLeft = document.querySelector('span#left');
+
+
+
+let budget, userBudget;
+
+const html = new HTML();
+
+
