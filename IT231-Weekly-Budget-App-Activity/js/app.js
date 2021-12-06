@@ -74,3 +74,41 @@ let budget, userBudget;
 const html = new HTML();
 
 
+eventListeners();
+function eventListeners() {
+
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        userBudget = prompt(' What\s your budget for this week? ');
+
+        if(userBudget === null || userBudget === '' || userBudget === '0') {
+            window.location.reload();
+        } else {
+
+            budget = new Budget(userBudget);
+
+            
+            html.insertBudget(budget.budget);
+        }
+    });
+
+    addExpenseForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        
+        const expenseName = document.querySelector('#expense').value;
+        const amount = document.querySelector('#amount').value;
+
+        if(expenseName === '' || amount === '') {
+            html.printMessage('There was an error, all the fields are mandatory', 'alert-danger');
+        } else {
+
+            html.addExpenseToList(expenseName, amount);
+            html.trackBudget(amount);
+            html.printMessage('Added...', 'alert-succes');
+
+        }
+    });
+}
+
+
